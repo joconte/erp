@@ -36,6 +36,7 @@ pipeline {
             'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])].join(' ')])
             archiveArtifacts 'target/*.jar'
             junit 'target/surefire-reports/*.xml'
+            discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discordapp.com/api/webhooks/671807536835461134/yuORHRLOU_JzhY_UiHiQOosvf1hR3ZnRkR-bmooUWP9tLnFatu98ntlzcRy5184lsMzO"
         }
     }
 }
