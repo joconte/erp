@@ -24,9 +24,9 @@ pipeline {
         stage('Inspection') {
              steps{
                 sh "mvn sonar:sonar \
-                  -Dsonar.projectKey=fr.epsi.erp \
-                  -Dsonar.host.url=http://35.204.133.106 \
-                  -Dsonar.login=b4305e46e9938752ae37809a4da4dadc25ec1a2f"
+                      -Dsonar.projectKey=fr.epsi.erp \
+                      -Dsonar.host.url=http://35.238.91.38 \
+                      -Dsonar.login=28b856747c2ece1246339d399a4b360a0e04d23d"
              }
         }
     }
