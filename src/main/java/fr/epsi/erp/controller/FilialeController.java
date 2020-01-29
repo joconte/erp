@@ -72,6 +72,6 @@ public class FilialeController implements IFilialeController {
 
     @Override
     public List<AchatWithLink> getAchats(Long id) throws Exception {
-        return filialeService.getAchats(id);casse le build
+        return filialeService.getAchats(id);
     }
 }
