@@ -8,12 +8,15 @@ import fr.epsi.erp.model.Fournisseur;
 import fr.epsi.erp.model.FournisseurProduit;
 import fr.epsi.erp.repository.FournisseurRepository;
 import fr.epsi.erp.service.FournisseurService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
+@Api(description="API pour effectuer des actions sur les fournisseurs.")
 @RestController
 public class FournisseurController implements IFournisseurController {
 
@@ -23,6 +26,7 @@ public class FournisseurController implements IFournisseurController {
     @Autowired
     private FournisseurRepository fournisseurRepository;
 
+    @ApiOperation(value = "Permet de récupérer tous les fournisseurs.")
     @Override
     public List<FournisseurWithLink> getAll() {
         return fournisseurService.getAll();
