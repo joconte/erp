@@ -4,6 +4,7 @@ import fr.epsi.erp.dto.AchatCreate;
 import fr.epsi.erp.dto.AchatWithLink;
 import fr.epsi.erp.dto.FilialeCreate;
 import fr.epsi.erp.dto.FilialeWithLink;
+import fr.epsi.erp.exception.ExceptionFonctionnnelle;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface IFilialeController {
     List<FilialeWithLink> getAll();
 
     @PostMapping
-    FilialeWithLink post(@RequestBody FilialeCreate filialeCreate);
+    FilialeWithLink post(@RequestBody FilialeCreate filialeCreate) throws ExceptionFonctionnnelle;
 
     @GetMapping
     @RequestMapping("/{id}")

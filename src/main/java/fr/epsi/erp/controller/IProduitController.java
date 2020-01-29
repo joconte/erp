@@ -1,6 +1,7 @@
 package fr.epsi.erp.controller;
 
 import fr.epsi.erp.dto.ProduitCreate;
+import fr.epsi.erp.exception.ExceptionFonctionnnelle;
 import fr.epsi.erp.model.Produit;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public interface IProduitController {
     List<Produit> getAll();
 
     @PostMapping
-    Produit post(@RequestBody ProduitCreate produitCreate);
+    Produit post(@RequestBody ProduitCreate produitCreate) throws ExceptionFonctionnnelle;
 
     @GetMapping
     @RequestMapping("{id}")

@@ -3,6 +3,7 @@ package fr.epsi.erp.controller;
 import fr.epsi.erp.dto.FournisseurAddProduit;
 import fr.epsi.erp.dto.FournisseurCreate;
 import fr.epsi.erp.dto.FournisseurWithLink;
+import fr.epsi.erp.exception.ExceptionFonctionnnelle;
 import fr.epsi.erp.model.FournisseurProduit;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public interface IFournisseurController {
     List<FournisseurWithLink> getAll();
 
     @PostMapping
-    FournisseurWithLink post(@RequestBody FournisseurCreate fournisseurCreate);
+    FournisseurWithLink post(@RequestBody FournisseurCreate fournisseurCreate) throws ExceptionFonctionnnelle;
 
     @GetMapping
     @RequestMapping("{id}")
