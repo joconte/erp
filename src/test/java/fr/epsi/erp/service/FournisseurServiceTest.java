@@ -1,5 +1,6 @@
 package fr.epsi.erp.service;
 
+import fr.epsi.erp.dto.FournisseurCreate;
 import fr.epsi.erp.dto.FournisseurWithLink;
 import fr.epsi.erp.model.Fournisseur;
 import fr.epsi.erp.repository.FournisseurRepository;
@@ -45,10 +46,25 @@ public class FournisseurServiceTest {
 
         // Assert
         assertThat(fournisseurWithLinks.size() == 1);
+        assertThat(fournisseurWithLinks.get(0).getNom().equals(fournisseur.getNom()));
     }
 
     @Test
     public void post() {
+
+        // Arrange
+        FournisseurCreate fournisseurCreate = new FournisseurCreate("Test");
+        Fournisseur fournisseur = new Fournisseur();
+        fournisseur.setNom("Test");
+
+        // Mock
+        Mockito.when(fournisseurRepository.save(Mockito.any(Fournisseur.class))).thenReturn(fournisseur);
+
+        // Act
+        FournisseurWithLink fournisseurWithLink = fournisseurService.post(fournisseurCreate);
+
+        // Assert
+        assertThat(fournisseurWithLink.getNom().equals("Test"));
     }
 
     @Test
