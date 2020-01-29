@@ -4,11 +4,13 @@ import fr.epsi.erp.dto.AchatCreate;
 import fr.epsi.erp.dto.AchatWithLink;
 import fr.epsi.erp.dto.FilialeCreate;
 import fr.epsi.erp.dto.FilialeWithLink;
+import fr.epsi.erp.exception.ExceptionFonctionnnelle;
 import fr.epsi.erp.model.Constant;
 import fr.epsi.erp.model.Filiale;
 import fr.epsi.erp.repository.FilialeRepository;
 import fr.epsi.erp.service.FilialeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,7 +31,18 @@ public class FilialeController implements IFilialeController {
     }
 
     @Override
-    public FilialeWithLink post(FilialeCreate filialeCreate) {
+    public FilialeWithLink post(FilialeCreate filialeCreate) throws ExceptionFonctionnnelle {
+
+        if (StringUtils.isEmpty(filialeCreate.getNom())) {
+            throw new ExceptionFonctionnnelle("Le nom de la filiale est obligatoire.");
+        }
+
+        Optional<Filiale> optionalFiliale = filialeRepository.findFirstByNom(filialeCreate.getNom());
+
+        if(optionalFiliale.isPresent()) {
+            throw new ExceptionFonctionnnelle("La filiale " + filialeCreate.getNom() + " existe déjà.");
+        }
+
         Filiale filiale = new Filiale();
         filiale.setNom(filialeCreate.getNom());
         filiale = filialeRepository.save(filiale);
@@ -42,7 +55,7 @@ public class FilialeController implements IFilialeController {
         Optional<Filiale> optionalFiliale = filialeRepository.findById(id);
 
         if (!optionalFiliale.isPresent()) {
-            throw new Exception();
+            throw new ExceptionFonctionnnelle("Aucune filiale pour l'id " + id);
         }
 
         Filiale filiale = optionalFiliale.get();

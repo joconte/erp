@@ -3,12 +3,14 @@ package fr.epsi.erp.controller;
 import fr.epsi.erp.dto.FournisseurAddProduit;
 import fr.epsi.erp.dto.FournisseurCreate;
 import fr.epsi.erp.dto.FournisseurWithLink;
+import fr.epsi.erp.exception.ExceptionFonctionnnelle;
 import fr.epsi.erp.model.Constant;
 import fr.epsi.erp.model.Fournisseur;
 import fr.epsi.erp.model.FournisseurProduit;
 import fr.epsi.erp.repository.FournisseurRepository;
 import fr.epsi.erp.service.FournisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,7 +31,19 @@ public class FournisseurController implements IFournisseurController {
     }
 
     @Override
-    public FournisseurWithLink post(FournisseurCreate fournisseurCreate) {
+    public FournisseurWithLink post(FournisseurCreate fournisseurCreate) throws ExceptionFonctionnnelle {
+
+        if (StringUtils.isEmpty(fournisseurCreate.getNom())) {
+            throw new ExceptionFonctionnnelle("Le nom du fournisseur est obligatoire.");
+        }
+
+        Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findFirstByNom(fournisseurCreate.getNom());
+
+        if (optionalFournisseur.isPresent()) {
+            throw new ExceptionFonctionnnelle("Le fournisseur " + fournisseurCreate.getNom() + " existe déjà.");
+        }
+
+
         return fournisseurService.post(fournisseurCreate);
     }
 
@@ -38,7 +52,7 @@ public class FournisseurController implements IFournisseurController {
         Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findById(id);
 
         if (!optionalFournisseur.isPresent()) {
-            throw new Exception();
+            throw new ExceptionFonctionnnelle("Aucun fournisseur pour l'id " + id);
         }
 
         Fournisseur fournisseur = optionalFournisseur.get();
@@ -56,7 +70,7 @@ public class FournisseurController implements IFournisseurController {
         Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findById(id);
 
         if (!optionalFournisseur.isPresent()) {
-            throw new Exception();
+            throw new ExceptionFonctionnnelle("Aucun fournisseur pour l'id " + id);
         }
 
         Fournisseur fournisseur = optionalFournisseur.get();
