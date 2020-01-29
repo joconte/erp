@@ -18,15 +18,12 @@ public interface IFilialeController {
     @PostMapping
     FilialeWithLink post(@RequestBody FilialeCreate filialeCreate) throws ExceptionFonctionnnelle;
 
-    @GetMapping
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     FilialeWithLink getById(@PathVariable Long id) throws Exception;
 
-    @PostMapping
-    @RequestMapping("/achats")
+    @PostMapping("/achats")
     List<AchatWithLink> addAchat(@RequestBody AchatCreate achatCreate) throws Exception;
 
-    @GetMapping
-    @RequestMapping("/{id}/achats")
+    @GetMapping("/{id}/achats")
     List<AchatWithLink> getAchats(@PathVariable Long id) throws Exception;
 }

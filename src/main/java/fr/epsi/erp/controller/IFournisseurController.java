@@ -18,15 +18,12 @@ public interface IFournisseurController {
     @PostMapping
     FournisseurWithLink post(@RequestBody FournisseurCreate fournisseurCreate) throws ExceptionFonctionnnelle;
 
-    @GetMapping
-    @RequestMapping("{id}")
+    @GetMapping("{id}")
     FournisseurWithLink getById(@PathVariable Long id) throws Exception;
 
-    @PostMapping
-    @RequestMapping("/produits")
+    @PostMapping("/produits")
     List<FournisseurProduit> addProduit(@RequestBody FournisseurAddProduit fournisseurAddProduit) throws Exception;
 
-    @GetMapping
-    @RequestMapping("/{id}/produits")
+    @GetMapping("/{id}/produits")
     List<FournisseurProduit> getProduits(@PathVariable Long id) throws Exception;
 }

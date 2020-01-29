@@ -16,7 +16,6 @@ public interface IProduitController {
     @PostMapping
     Produit post(@RequestBody ProduitCreate produitCreate) throws ExceptionFonctionnnelle;
 
-    @GetMapping
-    @RequestMapping("{id}")
+    @GetMapping("/{id}")
     Produit getById(@PathVariable Long id) throws Exception;
 }
