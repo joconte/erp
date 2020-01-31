@@ -1,1 +1,17 @@
-todo
+image: maven:latest
+
+compile:
+  script:
+    - mvn compile
+
+test:
+  script:
+    - mvn test
+
+package:
+  script:
+    - mvn package
+
+deploy:
+  script:
+    - echo "todo"
