@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mspr-erp-deploy
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mspr-erp-deploy
+    spec:
+      containers:
+        - name: mspr-erp-deploy
+          image: registry.gitlab.com/joNNNN/mspr-erp
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: registry.gitlab.com
