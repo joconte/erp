@@ -22,9 +22,9 @@ maven-build:
 docker-build:
   stage: package
   script:
-    - docker build -t registry.gitlab.com/joNNNN/mspr-erp .
+    - docker build -t registry.gitlab.com/jonnn/mspr-erp .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker push registry.gitlab.com/joNNNN/mspr-erp
+    - docker push registry.gitlab.com/jonnn/mspr-erp
 
 k8s-deploy:
   image: google/cloud-sdk
