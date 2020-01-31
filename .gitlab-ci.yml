@@ -37,5 +37,5 @@ k8s-deploy:
     - gcloud config set container/use_client_certificate True
     - gcloud container clusters get-credentials mspr-erp-deploy
     - kubectl delete secret registry.gitlab.com
-    - kubectl create secret docker-registry registry.gitlab.com --docker-server=https://registry.gitlab.com --docker-username=jonathan_conte_i2a --docker-password=$REGISTRY_PASSWD --docker-email=jonathan.conte.i2a@gmail.com
+    - kubectl create secret docker-registry registry.gitlab.com --docker-server=https://registry.gitlab.com --docker-username=jonnn --docker-password=$REGISTRY_PASSWD --docker-email=jonathan.conte@epsi.fr
     - kubectl apply -f deployment.yml
