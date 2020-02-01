@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: mspr-erp-deploy
-          image: registry.gitlab.com/jonnn/mspr-erp
+          image: registry.gitlab.com/jonnn/mspr-erp-backend
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
