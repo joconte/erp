@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Api(description="API pour effectuer des actions sur les fournisseurs.")
@@ -25,7 +26,7 @@ public interface IFournisseurController {
 
     @ApiOperation(value = "Permet de récupérer un fournisseur par son Identifiant.")
     @GetMapping("{id}")
-    FournisseurWithLink getById(@PathVariable Long id) throws Exception;
+    FournisseurWithLink getById(@PathVariable Long id, HttpServletRequest request) throws Exception;
 
     @ApiOperation(value = "Permet d'ajouter un produit à un fournisseur.")
     @PostMapping("/produits")
