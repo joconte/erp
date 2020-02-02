@@ -4,7 +4,6 @@ import fr.epsi.erp.dto.FournisseurAddProduit;
 import fr.epsi.erp.dto.FournisseurCreate;
 import fr.epsi.erp.dto.FournisseurWithLink;
 import fr.epsi.erp.exception.ExceptionFonctionnnelle;
-import fr.epsi.erp.model.Constant;
 import fr.epsi.erp.model.Fournisseur;
 import fr.epsi.erp.model.FournisseurProduit;
 import fr.epsi.erp.repository.FournisseurRepository;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +47,7 @@ public class FournisseurController implements IFournisseurController {
     }
 
     @Override
-    public FournisseurWithLink getById(Long id, HttpServletRequest request) throws Exception {
+    public FournisseurWithLink getById(Long id) throws Exception {
         Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findById(id);
 
         if (!optionalFournisseur.isPresent()) {
@@ -58,7 +56,7 @@ public class FournisseurController implements IFournisseurController {
 
         Fournisseur fournisseur = optionalFournisseur.get();
 
-        return new FournisseurWithLink(fournisseur.getId(), fournisseur.getNom(), "https://" + request.getLocalName() + "/api/fournisseurs/" + fournisseur.getId() + "/produits");
+        return new FournisseurWithLink(fournisseur.getId(), fournisseur.getNom(), "/api/fournisseurs/" + fournisseur.getId() + "/produits");
     }
 
     @Override
