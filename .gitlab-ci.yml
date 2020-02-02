@@ -10,6 +10,7 @@ cache:
 
 stages:
   - build
+  - quality
   - deploy
 
 build:
@@ -19,6 +20,12 @@ build:
     - mvn clean package
   tags:
     - docker
+
+quality:
+  stage: quality
+  image: maven:3.3.9-jdk-8
+  script:
+    - mvn sonar:sonar -Dsonar.projectKey=fr.epsi.erp -Dsonar.host.url=http://35.238.91.38 -Dsonar.login=$SONAR_TOKEN
 
 deploy_dev:
   stage: deploy
