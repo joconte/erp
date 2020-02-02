@@ -28,7 +28,7 @@ quality:
   script:
     - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
   only:
-    - develop
+    - master
 
 deploy_staging:
   stage: staging
@@ -58,6 +58,6 @@ deploy_production:
     name: dev
     url: https://mspr-erp-backend.herokuapp.com
   only:
-    - master
+    - production
   tags:
     - docker

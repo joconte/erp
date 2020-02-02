@@ -33,6 +33,6 @@ Do some work on your branch and then push your branch to the remote repository :
 
 ```git push origin feature-add-new-awesome-feature-myname```
 
-Then ask for a merge request onto the ```develop``` branch.
+Then ask for a merge request onto the ```master``` branch.
 
-The ```develop``` branch is where we all add our code. I'm then taking care of the ```staging``` and ```production``` deployment. 
+The ```master``` branch is where we all add our code. I'm then taking care of the ```staging``` and ```production``` deployment. 
