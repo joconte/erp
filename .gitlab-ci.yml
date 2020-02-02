@@ -43,7 +43,7 @@ deploy_staging:
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
   environment:
     name: staging
-    url: https://mspr-erp-backend-staging.herokuapp.com
+    url: https://mspr-erp-backend-staging.herokuapp.com/swagger-ui.html
   only:
     - staging
   tags:
@@ -59,7 +59,7 @@ deploy_production:
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   environment:
     name: production
-    url: https://mspr-erp-backend.herokuapp.com
+    url: https://mspr-erp-backend.herokuapp.com/swagger-ui.html
   only:
     - production
   tags:
