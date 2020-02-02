@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class FournisseurController implements IFournisseurController {
     }
 
     @Override
-    public FournisseurWithLink getById(Long id) throws Exception {
+    public FournisseurWithLink getById(Long id, HttpServletRequest request) throws Exception {
         Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findById(id);
 
         if (!optionalFournisseur.isPresent()) {
@@ -57,7 +58,7 @@ public class FournisseurController implements IFournisseurController {
 
         Fournisseur fournisseur = optionalFournisseur.get();
 
-        return new FournisseurWithLink(fournisseur.getId(), fournisseur.getNom(), Constant.baseUrl + "/api/" + fournisseur.getId() + "/produits");
+        return new FournisseurWithLink(fournisseur.getId(), fournisseur.getNom(), "https://" + request.getLocalName() + "/api/fournisseurs/" + fournisseur.getId() + "/produits");
     }
 
     @Override
