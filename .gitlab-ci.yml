@@ -12,6 +12,7 @@ stages:
   - build
   - quality
   - deploy
+  - staging
 
 build:
   stage: build
@@ -27,7 +28,23 @@ quality:
   script:
     - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
 
-deploy_dev:
+deploy_staging:
+  stage: staging
+  image: ruby:2.3
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
+  environment:
+    name: dev
+    url: https://mspr-erp-backend-staging.herokuapp.com
+  only:
+    - staging
+  tags:
+    - docker
+
+deploy_production:
   stage: deploy
   image: ruby:2.3
   script:
