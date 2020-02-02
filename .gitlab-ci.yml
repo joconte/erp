@@ -42,7 +42,7 @@ deploy_staging:
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
   environment:
-    name: dev
+    name: staging
     url: https://mspr-erp-backend-staging.herokuapp.com
   only:
     - staging
@@ -58,7 +58,7 @@ deploy_production:
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   environment:
-    name: dev
+    name: production
     url: https://mspr-erp-backend.herokuapp.com
   only:
     - production
