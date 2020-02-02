@@ -47,7 +47,7 @@ public class FilialeController implements IFilialeController {
         filiale.setNom(filialeCreate.getNom());
         filiale = filialeRepository.save(filiale);
 
-        return new FilialeWithLink(filiale.getId(), filiale.getNom(), Constant.baseUrl + "/api/filiale/" + filiale.getId() + "/achats");
+        return new FilialeWithLink(filiale.getId(), filiale.getNom(), "/api/filiale/" + filiale.getId() + "/achats");
     }
 
     @Override
@@ -60,7 +60,7 @@ public class FilialeController implements IFilialeController {
 
         Filiale filiale = optionalFiliale.get();
 
-        FilialeWithLink filialeWithLink = new FilialeWithLink(filiale.getId(), filiale.getNom(), Constant.baseUrl + "/api/filiale/" + filiale.getId() + "/achats");
+        FilialeWithLink filialeWithLink = new FilialeWithLink(filiale.getId(), filiale.getNom(), "/api/filiale/" + filiale.getId() + "/achats");
 
         return filialeWithLink;
     }

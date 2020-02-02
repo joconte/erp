@@ -26,7 +26,7 @@ public interface IFournisseurController {
 
     @ApiOperation(value = "Permet de récupérer un fournisseur par son Identifiant.")
     @GetMapping("{id}")
-    FournisseurWithLink getById(@PathVariable Long id, HttpServletRequest request) throws Exception;
+    FournisseurWithLink getById(@PathVariable Long id) throws Exception;
 
     @ApiOperation(value = "Permet d'ajouter un produit à un fournisseur.")
     @PostMapping("/produits")
