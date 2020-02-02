@@ -29,24 +29,8 @@ deploy_dev:
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   environment:
-  name: dev
-  url: https://mspr-erp-backend.herokuapp.com
-  only:
-    - master
-  tags:
-    - docker
-
-deploy_staging:
-  stage: deploy
-  image: ruby:2.3
-  script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
-  environment:
-  name: staging
-  url: https://mspr-erp-backend.herokuapp.com
+    name: dev
+    url: https://mspr-erp-backend.herokuapp.com
   only:
     - master
   tags:
