@@ -25,7 +25,16 @@ quality:
   stage: quality
   image: maven:3.3.9-jdk-8
   script:
-    - mvn sonar:sonar -Dsonar.projectKey=fr.epsi.erp -Dsonar.host.url=http://35.238.91.38 -Dsonar.login=$SONAR_TOKEN
+    - sh gradlew sonarqube
+-Dsonar.host.url=$SONAR_URL
+-Dsonar.login=$SONAR_TOKEN
+-Dsonar.projectName=fr.epsi.erp
+-Dsonar.projectKey=fr.epsi.erp
+-Dsonar.gitlab.user_token="$GITLAB_ACCESS_TOKEN"
+-Dsonar.gitlab.project_id=$CI_PROJECT_PATH
+-Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA
+-Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
+-Dsonar.analysis.mode=publish
 
 deploy_dev:
   stage: deploy
