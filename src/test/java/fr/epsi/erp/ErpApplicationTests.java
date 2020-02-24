@@ -8,6 +8,7 @@ public class ErpApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }

@@ -23,6 +23,10 @@ public class Produit {
         return id;
     }
 
+    public void setId(Long p_id) {
+        this.id = p_id;
+    }
+
     public String getNom() {
         return nom;
     }
