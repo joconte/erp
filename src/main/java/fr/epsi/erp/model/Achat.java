@@ -32,6 +32,10 @@ public class Achat {
         return id;
     }
 
+    public void setId(Long p_id) {
+        this.id = p_id;
+    }
+
     public Date getDate() {
         return date;
     }
