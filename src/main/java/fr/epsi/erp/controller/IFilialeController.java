@@ -34,4 +34,8 @@ public interface IFilialeController {
     @ApiOperation(value = "Permet de récupérer tous les achats que la filiale possède (par son Identifiant).")
     @GetMapping("/{id}/achats")
     List<AchatWithLink> getAchats(@PathVariable Long id) throws Exception;
+
+    @ApiOperation(value = "Permet de supprimer une filiale par son id.")
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Long id);
 }

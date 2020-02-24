@@ -99,4 +99,9 @@ public class FilialeService {
 
         return achatWithLinks;
     }
+
+    public void delete(Long id) {
+
+        filialeRepository.deleteById(id);
+    }
 }
