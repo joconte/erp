@@ -8,11 +8,16 @@ cache:
   paths:
     - /root/.m2/repository
 
+'''
 stages:
   - build
   - quality
   - deploy
   - staging
+'''
+stages:
+  - build
+  - ready-to-deploy-docker
 
 build:
   stage: build
@@ -25,6 +30,19 @@ build:
     - staging
     - production
 
+ready-to-deploy-docker:
+  stage: ready-to-deploy-docker
+  image: dind
+  script:
+    - docker build ./ -t springbootapp
+    - docker save -o ./springbootapp.tar springbootapp
+    - docker save -o ./postgres.tar postgres
+  artifacts:
+    paths:
+      - ./springbootapp.tar
+      - ./postgres.tar
+
+'''
 quality:
   stage: quality
   image: maven:3.3.9-jdk-8
@@ -64,3 +82,4 @@ deploy_production:
     - production
   tags:
     - docker
+'''
