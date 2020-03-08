@@ -25,7 +25,6 @@ build:
 
 ready-to-deploy-docker:
   stage: ready-to-deploy-docker
-  image: dind
   script:
     - docker build ./ -t springbootapp
     - docker save -o ./springbootapp.tar springbootapp
