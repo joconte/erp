@@ -8,13 +8,6 @@ cache:
   paths:
     - /root/.m2/repository
 
-'''
-stages:
-  - build
-  - quality
-  - deploy
-  - staging
-'''
 stages:
   - build
   - ready-to-deploy-docker
@@ -41,45 +34,3 @@ ready-to-deploy-docker:
     paths:
       - ./springbootapp.tar
       - ./postgres.tar
-
-'''
-quality:
-  stage: quality
-  image: maven:3.3.9-jdk-8
-  script:
-    - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
-  only:
-    - master
-
-deploy_staging:
-  stage: staging
-  image: ruby:2.3
-  script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
-  environment:
-    name: staging
-    url: https://mspr-erp-backend-staging.herokuapp.com/swagger-ui.html
-  only:
-    - staging
-  tags:
-    - docker
-
-deploy_production:
-  stage: deploy
-  image: ruby:2.3
-  script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
-  environment:
-    name: production
-    url: https://mspr-erp-backend.herokuapp.com/swagger-ui.html
-  only:
-    - production
-  tags:
-    - docker
-'''
